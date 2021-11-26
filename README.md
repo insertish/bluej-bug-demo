@@ -1,6 +1,6 @@
-# Bug 1: BlueJ lacks UTF-8 support(?) on Windows
+# Bug 1: BlueJ Jar import (in specific cases) and export lacks proper UTF-8 support.
 
-I was adding Unicode to my project and when running it in BlueJ I noticed the characters were mangled, I believe that the issue has to do with BlueJ not using the correct encoding on Windows.
+I was adding Unicode to my project and when running it in BlueJ I noticed the characters were mangled, I believe that the issue has to do with BlueJ not using the correct encoding on Windows. I eventually figured out how to reproduce it correctly.
 
 ## Observations
 
@@ -41,7 +41,53 @@ Linux .jar export being unpacked on Windows (also hit an unrelated error)
 
 ![image](https://user-images.githubusercontent.com/38285861/143618210-c3c658d6-134f-4116-add5-0d0d201a7ec4.png)
 
-## Almost Bug 2: Maybe it's Windows? Or just more bugs.
+## Reproduction
+
+Must be on Windows.
+
+This can be reproduced in a few simple steps:
+1. Create a new BlueJ project on Windows
+2. Create a new class `Main.java` and copy the following contents:
+
+   ```java
+   public class Main {
+      public static void main(String[] args) {
+         System.out.println("🤔");
+      }
+   }
+   ```
+3. Invoke the main function from BlueJ.
+4. Inspect `output.txt` using a code editor that supports Unicode to verify that there is indeed an emoji.
+5. Select `Project -> Create Jar File`.
+6. Export this to a new folder.
+7. Export again but this time without BlueJ project files included.
+8. Run `java -jar <your new file>.jar` on both files and each time, verify `output.txt` does not show a valid emoji.
+
+Continued reproduction steps for import:
+1. Take the JARs from before.
+2. Either:
+   - (Recommended) Copy the project folder to a Linux machine and export from there, afterwards copy the JAR file back.
+
+     One of the times you export, do not include project files.
+   - Download my two exported JARs [with project files](https://github.com/insertish/bluej-bug-demo/raw/master/Reproduction%20Steps/with_project_files.jar) and [without project files](https://github.com/insertish/bluej-bug-demo/raw/master/Reproduction%20Steps/without_project_files.jar).
+     
+     These files were exported as described in the step above.
+3. Select `Project -> Open ZIP/JAR...`.
+4. Select the JAR file without project files.
+5. Edit `Main.java` and notice that the emoji is garbled.
+   
+   You should see something such as:
+   ![image](https://user-images.githubusercontent.com/38285861/143625850-b1922eef-302f-4334-8a3a-39295c0a3060.png)
+6. Select the JAR file with project files.
+7. Edit `Main.java` and notice that the emoji is not garbled.
+
+## Conclusion
+
+JARs exported from BlueJ on Windows appear to not be encoded properly.
+
+JARs imported into BlueJ on Windows that were exported by BlueJ that specifically excluded project files and originate from another platform such as Linux or generated in another way are not decoded properly.
+
+# (Almost) Bug 2: Maybe it's Windows? Or just more bugs.
 
 **Read this first!** I encountered this bug for a brief period until further restarts, but I chose to keep the information here anyways since.
 
