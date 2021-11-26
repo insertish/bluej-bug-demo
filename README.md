@@ -89,4 +89,4 @@ I enabled the [Unicode UTF-8 beta in Windows using this StackOverflow guide](htt
 
 ### Ok how about doing it in reverse?
 
-This time, I took that existing BlueJ project (from a working copy with mangled characters, i.e. the original but successfully imported), exported it while under this Windows beta mode and then restarted to see what would happen when I imported that project.
+This time, I took that existing BlueJ project (from a working copy with mangled characters, i.e. the original but successfully imported), exported it while under this Windows beta mode and then restarted to see what would happen when I imported that project, I didn't expect much and it just worked as intended so I guess it was more just to see how if there would be any issue.
