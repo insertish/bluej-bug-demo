@@ -1,3 +1,8 @@
+This repo contains reproduction and documentation for three seperate BlueJ bugs:
+1. [Issues with UTF-8 support on import / export (on Windows).](#bug-1-bluej-jar-import-in-specific-cases-and-export-lacks-proper-utf-8-support)
+2. [Issues with importing non-BlueJ projects (on Linux).](#almost-bug-2-maybe-its-windows-or-just-more-bugs-bluej-hangs-converting-non-bluej-projects-seemingly-randomly-but-with-consistency-where-it-matters-particularly-on-linux)
+3. [Issues with BlueJ seemingly randomly deleting files.](#bug-3-bluej-likes-to-delete-files-ctrlz-issue--unknown)
+
 # Bug 1: BlueJ Jar import (in specific cases) and export lacks proper UTF-8 support.
 
 I was adding Unicode to my project and when running it in BlueJ I noticed the characters were mangled, I believe that the issue has to do with BlueJ not using the correct encoding on Windows. I eventually figured out how to reproduce it correctly.
