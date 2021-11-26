@@ -1,6 +1,6 @@
 # Bug: BlueJ lacks UTF-8 support(?) on Windows
 
-I was adding Unicode to my project and when running it in BlueJ I noticed the characters were mangled, in fact it was reading each 
+I was adding Unicode to my project and when running it in BlueJ I noticed the characters were mangled, I believe that the issue has to do with BlueJ not using the correct encoding on Windows.
 
 ## Observations
 
@@ -8,13 +8,15 @@ I was adding Unicode to my project and when running it in BlueJ I noticed the ch
 
 Unicode emoji appearing garbled in BlueJ. (4 hex digits when looking at hex dump)
 
-![image](https://user-images.githubusercontent.com/38285861/143617804-29a4e8b0-92b1-4f20-97a4-371ce007cdd2.png)
-![image](https://user-images.githubusercontent.com/38285861/143617843-4a9aa7bd-6d35-4438-be10-2c3bca406b59.png)
+| ![image](https://user-images.githubusercontent.com/38285861/143617804-29a4e8b0-92b1-4f20-97a4-371ce007cdd2.png) | ![image](https://user-images.githubusercontent.com/38285861/143617843-4a9aa7bd-6d35-4438-be10-2c3bca406b59.png) |
+|:-:|:-:|
+| As seen in BlueJ | As seen in Visual Studio Code |
 
-Observed after pasting 😳 through emoji picker. (1 hex digit when looking at hex dump)
+Observed after pasting `😳` through emoji picker. (1 hex digit when looking at hex dump)
 
-![image](https://user-images.githubusercontent.com/38285861/143617871-9a43b4ce-1cff-4308-9e2a-71a618e7c910.png)
-![image](https://user-images.githubusercontent.com/38285861/143617864-748c0bc4-8eec-4a34-a99f-8522a3be1e0a.png)
+| ![image](https://user-images.githubusercontent.com/38285861/143617871-9a43b4ce-1cff-4308-9e2a-71a618e7c910.png) | ![image](https://user-images.githubusercontent.com/38285861/143617864-748c0bc4-8eec-4a34-a99f-8522a3be1e0a.png) |
+|:-:|:-:|
+| As seen in BlueJ | As seen in Visual Studio Code |
 
 Clearly, on Windows specifically, BlueJ appears to be using the wrong encoding.
 
