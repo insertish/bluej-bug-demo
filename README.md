@@ -50,10 +50,18 @@ This can be reproduced in a few simple steps:
 2. Create a new class `Main.java` and copy the following contents:
 
    ```java
+   import java.io.FileWriter;
+
    public class Main {
-      public static void main(String[] args) {
-         System.out.println("🤔");
-      }
+       public static void main(String[] args) {
+           try {
+               var writer = new FileWriter("output.txt");
+               writer.write("🤔");
+               writer.close();
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+       }
    }
    ```
 3. Invoke the main function from BlueJ.
@@ -82,13 +90,15 @@ Continued reproduction steps for import:
 6. Select the JAR file with project files.
 7. Edit `Main.java` and notice that the emoji is not garbled.
 
+Note: I then tried to take `without_project_files.jar` back on Linux and found a completely separate issue detailed below.
+
 ## Conclusion
 
 JARs exported from BlueJ on Windows appear to not be encoded properly.
 
 JARs imported into BlueJ on Windows that were exported by BlueJ that specifically excluded project files and originate from another platform such as Linux or generated in another way are not decoded properly.
 
-# (Almost) Bug 2: Maybe it's Windows? Or just more bugs.
+# (Almost) Bug 2: ~~Maybe it's Windows? Or just more bugs.~~ BlueJ hangs converting non-BlueJ projects seemingly randomly but with consistency where it matters (particularly on Linux).
 
 **Read this first!** I encountered this bug for a brief period until further restarts, but I chose to keep the information here anyways since.
 
@@ -156,7 +166,59 @@ This time, I took that existing BlueJ project (from a working copy with mangled 
 
 ### Verifying reproducability
 
+**Note**: this was superseded by new information and the reproduction below.
+
 And just as quickly as this bug appeared, it disappeared. Toggling the setting above twice (and restarting twice) caused the issue to disappear completely. This is also as unreliable to test as this random bug that I get that warns me that package declarations are wrong.
+
+## Reproduction
+
+You must be on Linux (may also occur on Windows, haven't tested).
+
+1. Create a new BlueJ project.
+2. Create `Main.java` and populate it with:
+
+   ```java
+   public class Main {
+       public static void main(String[] args) {
+           System.out.println("test");
+       }
+   }
+   ```
+
+3. Export this project as a JAR file, **without the project files**.
+4. Close BlueJ and open this JAR file in BlueJ (or use [the one I built earlier](https://github.com/insertish/bluej-bug-demo/raw/master/Reproduction%20Steps/bug2_export.jar)) or otherwise do this through the context menus.
+5. Find BlueJ is no longer doing anything but infinitely loading.
+
+   ![image](https://user-images.githubusercontent.com/38285861/143627062-4603b087-008a-4e48-b28a-a9840ae7c9f2.png)
+
+6. Look in the debug log to find the error as below:
+
+   ```
+   ====
+   BlueJ run started: Fri Nov 26 20:16:38 GMT 2021
+   BlueJ version 5.0.2
+   Java version 11.0.12
+   JavaFX version 11.0.10-internal+0-2021-01-10-174716
+   Virtual machine: OpenJDK 64-Bit Server VM 11.0.12+7 (Oracle Corporation)
+   Running on: Linux 5.13.13-arch1-1 (amd64)
+   Java Home: /usr/lib/jvm/java-11-openjdk
+   ----
+   Exception in thread "JavaFX Application Thread" java.lang.NullPointerException
+           at bluej.utility.JavaNames.getPrefix(JavaNames.java:163)
+           at bluej.pkgmgr.Import.convertNonBlueJ(Import.java:100)
+           at bluej.pkgmgr.PkgMgrFrame.openArchive(PkgMgrFrame.java:1710)
+           at bluej.pkgmgr.PkgMgrFrame.doOpen(PkgMgrFrame.java:889)
+           at bluej.BlueJGuiHandler.tryOpen(BlueJGuiHandler.java:50)
+           at bluej.Main.processArgs(Main.java:202)
+           at bluej.Main.lambda$new$1(Main.java:170)
+           at com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:428)
+           at java.base/java.security.AccessController.doPrivileged(Native Method)
+           at com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:427)
+           at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:96)
+           at com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+           at com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
+           at java.base/java.lang.Thread.run(Thread.java:829)
+   ```
 
 # Bug 3: BlueJ likes to delete files (ctrl+z issue / unknown)
 
