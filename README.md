@@ -47,7 +47,7 @@ While I was testing this, someone mentioned to me about `chcp 65001`, which in f
 
 > **Disclaimer**: This is probably something to do with the way I'm building the jar... on Linux but not Windows that's causing BlueJ to choke but at the same time that doesn't really make sense since the procedure is the same. Although I do a final test in reverse at the end.
 
-I enabled the [Unicode UTF-8 beta in Windows using this StackOverflow guide](https://stackoverflow.com/questions/57131654/using-utf-8-encoding-chcp-65001-in-command-prompt-windows-powershell-window), which led me to find:
+I enabled the [Unicode UTF-8 beta (for non-Unicode programs) in Windows using this StackOverflow guide](https://stackoverflow.com/questions/57131654/using-utf-8-encoding-chcp-65001-in-command-prompt-windows-powershell-window) (I didn't realise at the time this was for "non-Unicode" programs but the fact that I caused an issue with it was interesting enough to keep it here), which led me to find:
 
 1. Using the Windows exported jar on Windows, I got the same result, with mangled emoji.
 2. Using the Linux exported jar ([download bluej_out.jar](https://github.com/insertish/bluej-bug-demo/raw/master/Linux%20Exports/bluej_out.jar)) on Windows caused BlueJ to eternally hang.
@@ -104,3 +104,12 @@ I enabled the [Unicode UTF-8 beta in Windows using this StackOverflow guide](htt
 ### Ok how about doing it in reverse?
 
 This time, I took that existing BlueJ project (from a working copy with mangled characters, i.e. the original but successfully imported), exported it while under this Windows beta mode and then restarted to see what would happen when I imported that project, I didn't expect much and it just worked as intended so I guess it was more just to see how if there would be any issue.
+
+### Verifying reproducability
+
+Here are the outcomes when opening the Linux export in different configurations:
+
+| | Windows | Windows (with Unicode UTF-8 beta for non-Unicode programs) | Linux |
+|--:|:-:|:-:|:-:|
+|Outcome|✅ Successfully imported.|||
+|Image|![image](https://user-images.githubusercontent.com/38285861/143621617-55ef1dd3-23e6-4b2f-826d-216a5e9644d3.png)|||
