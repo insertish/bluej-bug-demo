@@ -12,7 +12,7 @@ Unicode emoji appearing garbled in BlueJ. (4 hex digits when looking at hex dump
 |:-:|:-:|
 | As seen in BlueJ | As seen in Visual Studio Code |
 
-Observed after pasting `😳` through emoji picker. (1 hex digit when looking at hex dump)
+After pasting `😳` through emoji picker, we find that: (1 hex digit when looking at hex dump)
 
 | ![image](https://user-images.githubusercontent.com/38285861/143617871-9a43b4ce-1cff-4308-9e2a-71a618e7c910.png) | ![image](https://user-images.githubusercontent.com/38285861/143617864-748c0bc4-8eec-4a34-a99f-8522a3be1e0a.png) |
 |:-:|:-:|
