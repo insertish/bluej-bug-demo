@@ -1,4 +1,4 @@
-# Bug: BlueJ lacks UTF-8 support(?) on Windows
+# Bug 1: BlueJ lacks UTF-8 support(?) on Windows
 
 I was adding Unicode to my project and when running it in BlueJ I noticed the characters were mangled, I believe that the issue has to do with BlueJ not using the correct encoding on Windows.
 
@@ -41,7 +41,9 @@ Linux .jar export being unpacked on Windows (also hit an unrelated error)
 
 ![image](https://user-images.githubusercontent.com/38285861/143618210-c3c658d6-134f-4116-add5-0d0d201a7ec4.png)
 
-## Maybe it's Windows? Or just more bugs.
+## Almost Bug 2: Maybe it's Windows? Or just more bugs.
+
+**Read this first!** I encountered this bug for a brief period until further restarts, but I chose to keep the information here anyways since.
 
 While I was testing this, someone mentioned to me about `chcp 65001`, which in fact led me to discover yet another bug.
 
@@ -50,7 +52,7 @@ While I was testing this, someone mentioned to me about `chcp 65001`, which in f
 I enabled the [Unicode UTF-8 beta (for non-Unicode programs) in Windows using this StackOverflow guide](https://stackoverflow.com/questions/57131654/using-utf-8-encoding-chcp-65001-in-command-prompt-windows-powershell-window) (I didn't realise at the time this was for "non-Unicode" programs but the fact that I caused an issue with it was interesting enough to keep it here), which led me to find:
 
 1. Using the Windows exported jar on Windows, I got the same result, with mangled emoji.
-2. Using the Linux exported jar ([download bluej_out.jar](https://github.com/insertish/bluej-bug-demo/raw/master/Linux%20Exports/bluej_out.jar)) on Windows caused BlueJ to eternally hang.
+2. Using the Linux exported jar on Windows caused BlueJ to eternally hang.
    
    As seen in the picture below:
    
@@ -107,9 +109,16 @@ This time, I took that existing BlueJ project (from a working copy with mangled 
 
 ### Verifying reproducability
 
-Here are the outcomes when opening the Linux export in different configurations:
+And just as quickly as this bug appeared, it disappeared. Toggling the setting above twice (and restarting twice) caused the issue to disappear completely. This is also as unreliable to test as this random bug that I get that warns me that package declarations are wrong.
 
-| | Windows | Windows (with Unicode UTF-8 beta for non-Unicode programs) | Linux |
-|--:|:-:|:-:|:-:|
-|Outcome|✅ Successfully imported.|||
-|Image|![image](https://user-images.githubusercontent.com/38285861/143621617-55ef1dd3-23e6-4b2f-826d-216a5e9644d3.png)|||
+# Bug 3: BlueJ likes to delete files (ctrl+z issue / unknown)
+
+This is a really bad bug report but I thought it should be mentioned since it's happened to 3 different people I know, although I haven't been able to reproduce it, it appears to happen in one of two ways:
+1. Undo history is cleared or otherwise not kept track of properly:
+   - `i think i did ctrl + a, ctrl + c then delete, just cause its something i so when iw anna reset my clipboard`
+   - in conversation later, other person also confirmed similar story: `same XD i was trying to delete the line i am on`
+2. BlueJ does not seem to recover from sudden close, one person after abruptly having to turn their computer off found the class they were working on to be completely empty.
+
+Here's an example from scenario (1.):
+![image](https://user-images.githubusercontent.com/38285861/143622889-10e7a7f5-cc06-418c-8a05-703ef754ab2d.png)
+
