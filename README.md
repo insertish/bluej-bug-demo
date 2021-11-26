@@ -4,17 +4,28 @@ I was adding Unicode to my project and when running it in BlueJ I noticed the ch
 
 ## Observations
 
-Unicode emoji appearing garbled in BlueJ. (4 )
+**Note**: the following was tested on and does not occur on Linux.
+
+Unicode emoji appearing garbled in BlueJ. (4 hex digits when looking at hex dump)
 
 ![image](https://user-images.githubusercontent.com/38285861/143617804-29a4e8b0-92b1-4f20-97a4-371ce007cdd2.png)
 ![image](https://user-images.githubusercontent.com/38285861/143617843-4a9aa7bd-6d35-4438-be10-2c3bca406b59.png)
 
-Observed after pasting 😳 through emoji picker.
+Observed after pasting 😳 through emoji picker. (1 hex digit when looking at hex dump)
 
 ![image](https://user-images.githubusercontent.com/38285861/143617871-9a43b4ce-1cff-4308-9e2a-71a618e7c910.png)
 ![image](https://user-images.githubusercontent.com/38285861/143617864-748c0bc4-8eec-4a34-a99f-8522a3be1e0a.png)
 
+Clearly, on Windows specifically, BlueJ appears to be using the wrong encoding.
+
 ## Tests
+
+This series of tests did the following steps:
+1. Export a new jar for BlueJ, with the original encoding and source.
+2. Export a jar from BlueJ after importing (1.) and then immediately re-exporting it.
+   
+   This is just a sanity check to ensure that it is a valid BlueJ jar.
+3. Edit `App.java` and replace the garbled emoji by pasting `😳` then export the jar.
 
 Linux .jar export comparisons
 
@@ -37,7 +48,7 @@ While I was testing this, someone mentioned to me about `chcp 65001`, which in f
 I enabled the [Unicode UTF-8 beta in Windows using this StackOverflow guide](https://stackoverflow.com/questions/57131654/using-utf-8-encoding-chcp-65001-in-command-prompt-windows-powershell-window), which led me to find:
 
 1. Using the Windows exported jar on Windows, I got the same result, with mangled emoji.
-2. Using the Linux exported jar on Windows caused BlueJ to crash eternally hang.
+2. Using the Linux exported jar on Windows caused BlueJ to eternally hang.
    As seen in the picture below:
    
    ![image](https://user-images.githubusercontent.com/38285861/143619477-6f109b86-ee68-4cee-977d-fd61dd993768.png)
