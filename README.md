@@ -3,6 +3,8 @@ This repo contains reproduction and documentation for three seperate BlueJ bugs:
 2. [Issues with importing non-BlueJ projects (on Linux).](#almost-bug-2-maybe-its-windows-or-just-more-bugs-bluej-hangs-converting-non-bluej-projects-seemingly-randomly-but-with-consistency-where-it-matters-particularly-on-linux)
 3. [Issues with BlueJ seemingly randomly deleting files.](#bug-3-bluej-likes-to-delete-files-ctrlz-issue--unknown)
 
+And I've included [Independent Testing](#independent-testing) at the end.
+
 # Bug 1: BlueJ Jar import (in specific cases) and export lacks proper UTF-8 support.
 
 I was adding Unicode to my project and when running it in BlueJ I noticed the characters were mangled, I believe that the issue has to do with BlueJ not using the correct encoding on Windows. I eventually figured out how to reproduce it correctly.
@@ -240,7 +242,7 @@ Here's an example from scenario (1.):
 
 I forwarded the built jars on to others and found the following:
 
-| Independent Windows Test<br/>(bug 1: w/ no project files jar) | Running Jar to find invalid output.txt<br/>(bug 1: export issues) | Independent Linux Test<br/>(bug 2: w/ no project files jar) |
+| Independent Windows Test<br/>(bug 1: w/ no project files jar) | Running Jar to find invalid output.txt<br/>(bug 1: export issues, either jar) | Independent Linux Test<br/>(bug 2: w/ no project files jar) |
 |:-:|:-:|:-:|
 |✅<br/>Matches my results.|✅<br/>Matches my results.|❌<br/>Does not match my results|
 |![image](https://user-images.githubusercontent.com/38285861/143630256-e7493b3f-de96-449c-ac9b-65c970f1fb08.png)|![image](https://user-images.githubusercontent.com/38285861/143630891-9de6bc1c-2e8e-4700-82bf-4acd772b8e50.png)|![image](https://user-images.githubusercontent.com/38285861/143638144-f67e3a74-f8ea-4f16-baae-50b97c5b8e59.png)|
