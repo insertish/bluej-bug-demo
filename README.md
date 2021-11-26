@@ -51,6 +51,9 @@ I enabled the [Unicode UTF-8 beta in Windows using this StackOverflow guide](htt
 
 1. Using the Windows exported jar on Windows, I got the same result, with mangled emoji.
 2. Using the Linux exported jar on Windows caused BlueJ to eternally hang.
+   
+   Can be downloaded from here: [bluej_out.jar](https://github.com/insertish/bluej-bug-demo/raw/master/Linux%20Exports/bluej_out.jar)
+   
    As seen in the picture below:
    
    ![image](https://user-images.githubusercontent.com/38285861/143619477-6f109b86-ee68-4cee-977d-fd61dd993768.png)
