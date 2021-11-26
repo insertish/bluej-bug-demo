@@ -77,6 +77,7 @@ Continued reproduction steps for import:
 5. Edit `Main.java` and notice that the emoji is garbled.
    
    You should see something such as:
+   
    ![image](https://user-images.githubusercontent.com/38285861/143625850-b1922eef-302f-4334-8a3a-39295c0a3060.png)
 6. Select the JAR file with project files.
 7. Edit `Main.java` and notice that the emoji is not garbled.
