@@ -236,3 +236,11 @@ This is a really bad bug report but I thought it should be mentioned since it's 
 Here's an example from scenario (1.):
 ![image](https://user-images.githubusercontent.com/38285861/143622889-10e7a7f5-cc06-418c-8a05-703ef754ab2d.png)
 
+## Independent Testing
+
+I forwarded the built jars on to others and found the following:
+
+| Independent Windows Test<br/>(bug 1: w/ no project files jar) | Running Jar to find invalid output.txt<br/>(bug 1: export issues) | Independent Linux Test<br/>(bug 2: w/ no project files jar) |
+|:-:|:-:|:-:|
+|✅<br/>Matches my results.|✅<br/>Matches my results.|❌<br/>Does not match my results|
+|![image](https://user-images.githubusercontent.com/38285861/143630256-e7493b3f-de96-449c-ac9b-65c970f1fb08.png)|![image](https://user-images.githubusercontent.com/38285861/143630891-9de6bc1c-2e8e-4700-82bf-4acd772b8e50.png)|![image](https://user-images.githubusercontent.com/38285861/143638144-f67e3a74-f8ea-4f16-baae-50b97c5b8e59.png)|
