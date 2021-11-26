@@ -1,8 +1,16 @@
-# bluej bug report
+# BlueJ does not appear to support UTF-8
 
 Linux .jar export comparisons
 
 ![image](https://user-images.githubusercontent.com/38285861/143616446-48559ce8-4e02-4aaa-ab9b-8df5f276b9e4.png)
+
+Windows .jar export comparisons
+
+![image](https://user-images.githubusercontent.com/38285861/143618268-aa1a5601-8f6f-4d46-9430-77392362a73b.png)
+
+Linux .jar export being unpacked on Windows (also hit an unrelated error)
+
+![image](https://user-images.githubusercontent.com/38285861/143618210-c3c658d6-134f-4116-add5-0d0d201a7ec4.png)
 
 Seen
 
