@@ -50,9 +50,7 @@ While I was testing this, someone mentioned to me about `chcp 65001`, which in f
 I enabled the [Unicode UTF-8 beta in Windows using this StackOverflow guide](https://stackoverflow.com/questions/57131654/using-utf-8-encoding-chcp-65001-in-command-prompt-windows-powershell-window), which led me to find:
 
 1. Using the Windows exported jar on Windows, I got the same result, with mangled emoji.
-2. Using the Linux exported jar on Windows caused BlueJ to eternally hang.
-   
-   Can be downloaded from here: [bluej_out.jar](https://github.com/insertish/bluej-bug-demo/raw/master/Linux%20Exports/bluej_out.jar)
+2. Using the Linux exported jar ([download bluej_out.jar](https://github.com/insertish/bluej-bug-demo/raw/master/Linux%20Exports/bluej_out.jar)) on Windows caused BlueJ to eternally hang.
    
    As seen in the picture below:
    
