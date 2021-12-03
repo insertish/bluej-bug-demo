@@ -1,3 +1,5 @@
+> Disclaimer: While there is a reproduction for bugs 1 and 2, I am still not sure if there are other factors at play.
+
 This repo contains reproduction and documentation for three seperate BlueJ bugs:
 1. [Issues with UTF-8 support on import / export (on Windows).](#bug-1-bluej-jar-import-in-specific-cases-and-export-lacks-proper-utf-8-support)
 2. [Issues with importing non-BlueJ projects (on Linux).](#almost-bug-2-maybe-its-windows-or-just-more-bugs-bluej-hangs-converting-non-bluej-projects-seemingly-randomly-but-with-consistency-where-it-matters-particularly-on-linux)
